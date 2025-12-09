@@ -45,10 +45,29 @@ function checkAllPrices() {
       continue;
     }
     
-    // Check if alert condition is met
-    const shouldAlert = checkCondition(currentPrice, targetPrice, condition);
     
-    if (shouldAlert) {
+    // if (shouldAlert) {
+    //   sendAlert(assetName, ticker, currentPrice, targetPrice, condition, email);
+      
+    //   // Update last alerted timestamp
+    //   sheet.getRange(i + 1, COLUMNS.LAST_ALERTED).setValue(new Date());
+      
+    //   // Log the alert
+    //   logAlert(assetName, ticker, currentPrice, targetPrice, condition, email);
+    // }
+
+    // Check alert condition and 6-hour throttle
+    const lastAlertTime = row[COLUMNS.LAST_ALERTED - 1];
+    const shouldAlert = checkCondition(currentPrice, targetPrice, condition);
+
+    // Only send alert if condition is met AND either:
+    // 1. Never alerted before, OR
+    // 2. More than 6 hours have passed since last alert
+    const now = new Date();
+    const sixHoursInMs = 6 * 60 * 60 * 1000; // 6 hours
+    const canAlert = !lastAlertTime || (now - new Date(lastAlertTime)) > sixHoursInMs;
+
+    if (shouldAlert && canAlert) {
       sendAlert(assetName, ticker, currentPrice, targetPrice, condition, email);
       
       // Update last alerted timestamp
@@ -56,7 +75,13 @@ function checkAllPrices() {
       
       // Log the alert
       logAlert(assetName, ticker, currentPrice, targetPrice, condition, email);
+      
+      Logger.log(`✅ Alert sent to ${email} for ${ticker}`);
+    } else if (shouldAlert && !canAlert) {
+      Logger.log(`⏳ ${ticker}: Condition met but throttled (last alert < 6 hours ago)`);
     }
+
+
   }
   
   Logger.log("✅ Price check completed at " + new Date());
