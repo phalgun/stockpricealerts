@@ -13,3 +13,6 @@ Setup Instructions:
 * Run setupTrigger() to start monitoring
 
 * Check "Apps Script" → "Triggers" to verify it's running
+
+
+The Google Sheet should look like in the screenshot in the source code. 
