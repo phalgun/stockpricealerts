@@ -1,0 +1,6 @@
+Ticker,Asset Name,Asset Type,Target Price,Condition,Email,Enabled,Current Price,Last Alerted
+MUTF_IN:MIRA_ASSE_GOLD_CXB0O9,Mirae Gold,Mutual Fund,14.2,ABOVE,phalgun.guduthur@gmail.com,TRUE,13.74,
+MUTF_IN:MIRA_ASSE_GOLD_CXB0O9,Mirae Gold,Mutual Fund,13,BELOW,phalgun.guduthur@gmail.com,TRUE,13.74,
+NOICE,Noice Token,Crypto,0.0003,ABOVE,phalgun.guduthur@gmail.com ,TRUE,0.00017985,
+ORACLE,Noice Token,Crypto,0.00003,ABOVE,phalgun.guduthur@gmail.com ,TRUE,0.00001406,12/9/2025
+NOICE,Noice Token,Crypto,0.00025,ABOVE,phalgun.guduthur@gmail.com ,TRUE,0.00017985,
